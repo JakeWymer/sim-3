@@ -18,7 +18,7 @@ class Form extends Component {
   handlePost = () => {
     let {title, imageUrl, content} = this.state;
 
-    axios.post(`/posts/create/${this.props.user_id}`, {title, imageUrl, content})
+    axios.post(`/posts/create`, {title, imageUrl, content})
       .then(() => this.setState({redirect: true}))
       .catch(err => console.log(err));
   }

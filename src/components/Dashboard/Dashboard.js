@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 class Dashboard extends Component {
@@ -35,7 +34,7 @@ class Dashboard extends Component {
   buildQS = () => {
     let {search, checked: userposts} = this.state;
 
-    let qs = `userid=${this.props.user.user_id}`;
+    let qs = '';
 
     if(search.length > 0) {
       qs += `&search=${search}`
@@ -82,6 +81,4 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => state;
-
-export default connect(mapStateToProps, null)(Dashboard);
+export default Dashboard;
