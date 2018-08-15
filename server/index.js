@@ -20,6 +20,11 @@ massive(process.env.DB_URL)
 app.post('/login', controller.login);
 app.post('/register', controller.register);
 
+app.get('/posts', controller.getPosts);
+app.get('/posts/:post_id', controller.getPostById);
+
+app.post('/posts/create/:user_id', controller.createPost);
+
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);
 });
