@@ -1,4 +1,5 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const massive = require('massive');
 const controller = require('./controller');
 const {json} = require('body-parser');
@@ -6,6 +7,8 @@ const session = require('express-session');
 require('dotenv').config();
 
 const port = 5000;
+
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(json());
 app.use(session({
@@ -32,6 +35,11 @@ app.get('/posts', controller.getPosts);
 app.get('/posts/:post_id', controller.getPostById);
 
 app.post('/posts/create', controller.createPost);
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

@@ -27,7 +27,13 @@ const logout = (req, res) => {
 
 const me = (req, res) => {
   req.app.get('db').get_user_by_id(req.session.userid)
-    .then(user => res.send(user[0]))
+    .then(user => {
+      if(user[0]) {
+        return res.send(user[0])
+      }
+
+      return res.send({message: 'Please log in'})
+    })
     .catch(err => console.log(err))
 }
 
